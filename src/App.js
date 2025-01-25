@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 
 const Loading = React.lazy(() => import('./pages/Loading'));
 const Login = React.lazy(() => import('./pages/Login'));
+const Redirection = React.lazy(() => import('./pages/Redirection'));
 const Chat = React.lazy(() => import('./pages/Chat'));
 const Manual = React.lazy(() => import('./pages/Manual'));
 const ManualDetail = React.lazy(() => import('./pages/ManualDetail'));
@@ -17,11 +18,12 @@ function App() {
       <AnimatePresence>
         <Suspense fallback={<Loading />}>
           <Routes>
-            <Route path="/" element={<MapPage />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/MapPage" element={<MapPage />} />
+            <Route path='/auth/kakao/callback' element={<Redirection />} />
             <Route path="/Chat" element={<Chat />} />
             <Route path="/Manual" element={<Manual />} />
-            <Route path="/ManualDetail" element={<ManualDetail />} />
+            <Route path="/manualdetail/:emergencyName" element={<ManualDetail />} />
             <Route path="/Mypage" element={<Mypage />} />
             <Route path="/Signup" element={<Signup />} />
           </Routes>
